@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import axios from "axios";
+import axios from 'axios';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      msg: ''
+    };
+  }
 
   componentDidMount() {
     axios.get('/api/test').then( response => {
-      console.log( response.data );
+      console.log(response.data);
+      this.setState({ msg: response.data });
     });
   }
 
@@ -19,9 +26,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 className="App-intro">
+          This is hello-world-1
+        </h1>
+
+        { this.state.msg }
       </div>
     );
   }
